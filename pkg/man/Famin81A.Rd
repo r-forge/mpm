@@ -16,4 +16,8 @@
     \item{\code{Productivity}}{a numeric vector; Productivity}
   }
 }
+\references{
+  Friday, L. and Laskey, R. (1989). The Fragile Environment, 
+  The Darwin College Lecture. Cambridge University Press, UK.
+}
 \keyword{datasets}
