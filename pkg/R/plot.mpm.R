@@ -80,7 +80,6 @@ plot.mpm <- function(
   # (RV: same remark as above for S)
   L <- L * sqrt(sum(x$eigen)) / sqrt(sum(x$eigen)^fact.scale[2])
   L[, d[dim] < 1E-6] <- 0
-  browser()
   #
   # Rotation
   # Default: flips both the X and Y axes
