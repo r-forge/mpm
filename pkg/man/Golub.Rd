@@ -1,5 +1,6 @@
 \name{Golub}
 \alias{Golub}
+\alias{Golub.grp}
 \docType{data}
 \title{ Golub (1999) Data}
 \description{
@@ -9,7 +10,7 @@
 }
 \usage{data(Golub)}
 \format{
-  A data frame with 5327 observations on the following 73 variables.
+  The expression data are available in data frame \code{Golub} with 5327 observations on the following 73 variables.
   \describe{
     \item{\code{Gene}}{a character vector with gene identifiers} % TODO which ID ?
     \item{\code{1}}{gene expression data for sample 1}
@@ -85,6 +86,9 @@
     \item{\code{64}}{gene expression data for sample 64}
     \item{\code{62}}{gene expression data for sample 62}
   }
+  The classes are in a separate numeric vector with values
+  \code{1} for the 38 patient samples and \code{2} and \code{3}
+  for the 34 (9 + 25) validation samples.
 }
 \details{
   The original data of Golub et al. (1999) were preprocessed 
@@ -99,7 +103,7 @@
 \source{
   Golub, T. R., Slonim, D. K., Tamayo, P., et al. (1999). Molecular
   classification of cancer: Class discovery and class prediction by 
-  gene expression monitoring. Science 286, 531–537.
+  gene expression monitoring. Science 286, 531 -- 537.
 }
 \references{
   Luc Wouters et al. (2003). Graphical Exploration of Gene Expression Data: 
