@@ -1,7 +1,7 @@
 Package: mpm
-Version: 1.0-7
+Version: 1.0-8
 Date: 2008-05-09
-Title: Spectral Map Analysis
+Title: Multivariate Projection Methods
 Maintainer: Luc Wouters <lwouters@luc.ac.be>
 Author: Luc Wouters <lwouters@luc.ac.be>
 Depends: R (>= 1.5), MASS, geneplotter
