@@ -71,8 +71,8 @@
   \item{do.smoothScatter}{use smoothScatter or not instead of plotting
                           individual points}
   \item{do.plot}{produce a plot or not}
-  \item{...}{dots argument currently added for being in line with generic
-    function definition only} 
+  \item{...}{further arguments to \code{eqscaleplot} which draws the canvas
+    for the plot; useful for adding titles (\code{main} or \code{sub})} 
 }
 \details{
   Spectral maps are special types of biplots with the area of the symbols

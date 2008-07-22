@@ -1,0 +1,3 @@
+1.0-9
+	o clarification plot.mpm documentation
+	o possibility to add main / sub titles in call to plot via `...'

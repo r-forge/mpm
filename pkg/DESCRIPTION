@@ -1,9 +1,9 @@
 Package: mpm
-Version: 1.0-8
-Date: 2008-05-09
+Version: 1.0-9
+Date: 2008-07-22
 Title: Multivariate Projection Methods
-Maintainer: Luc Wouters <lwouters@luc.ac.be>
-Author: Luc Wouters <lwouters@luc.ac.be>
+Maintainer: Luc Wouters <wouters_luc@telenet.be>
+Author: Luc Wouters <wouters_luc@telenet.be>
 Depends: R (>= 1.5), MASS, geneplotter
 Description: Exploratory graphical analysis of multivariate data,
         specifically gene expression data with different projection
