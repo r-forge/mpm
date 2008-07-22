@@ -1,3 +1,5 @@
 1.0-9
 	o clarification plot.mpm documentation
-	o possibility to add main / sub titles in call to plot via `...'
+	o removed (less flexible) `title' argument in favor of classical 
+	  main / sub titles	which can be passed to eqscplot via `...' 
+	  instead

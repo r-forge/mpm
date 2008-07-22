@@ -149,12 +149,28 @@ plot.mpm <- function(
     opar <- par(pty = "m") # preserve configuration
     # Create a window with the maximal plotting region
     # Equal scale plot function from MASS library
-    eqscplot(xrange, yrange, ratio = 1,
-        tol=0, type = "n", axes = FALSE, cex.lab = 0.85,
-        xlab = paste("PC", dim[1], " ", 100 * round(x$contrib[dim[1]], 2), "%", sep = ""),
-        ylab = paste("PC", dim[2], " ", 100 * round(x$contrib[dim[2]], 2), "%", sep = ""),
-        ...) # for main / sub
+    if (is.null(sub)){ 
+      sub <- paste("Closure = ", x$closure, ", 
+         Center = ", x$center, ", Norm. = ", x$normal, ", Scale = ", scale,
+         ", RW = ", x$row.weight, ", CW = ", x$col.weight, sep="")
+      if (is.null(cex.sub))
+        cex.sub <- 0.85 
+    }
+    if (is.null(cex.sub)) 
+      cex.sub <- 1
+    if (is.null(xlab))
+      xlab <- paste("PC", dim[1], " ", 100 * round(x$contrib[dim[1]], 2), "%", sep = "")
+    if (is.null(ylab))
+      ylab <- paste("PC", dim[2], " ", 100 * round(x$contrib[dim[2]], 2), "%", sep = "")
     
+    eqscplot(xrange, yrange, ratio = 1,
+             tol=0, type = "n", axes = FALSE, cex.lab = 0.85,
+             xlab = xlab,
+             ylab = ylab,
+             sub = sub,
+             cex.sub = cex.sub,
+             ...) # for main
+   
     #
     # Scales
     # (RV: the drop parameter doesn't have an effect in the following lines)
@@ -220,10 +236,7 @@ plot.mpm <- function(
     lines(c(-2.5,2.5) * sx, c(0,0), lwd=3)
     lines(c(0,0), c(-2.5,2.5) * sy, lwd=3)
     box()
-    title(main = title, sub = list(paste("Closure = ", x$closure, ", Center = ", x$center,
-                ", Norm. = ", x$normal, ", Scale = ", scale,
-                ", RW = ", x$row.weight, ", CW = ", x$col.weight, sep=""),
-          cex = 0.85, font = 1))
+   
     par(opar) # Restore plotting configuration
   }
   

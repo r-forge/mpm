@@ -10,7 +10,6 @@
            show.row = c("all", "position"),
            show.col = c("all", "position"),
            col.group = rep(1, length(x$col.names)),
-           title = "",
            colors = c("orange1", "red",
              rainbow(length(unique(col.group)), start = 2/6, end = 4/6)),
            col.areas = TRUE ,
@@ -25,7 +24,7 @@
 }
 \arguments{
   \item{x}{object of class \code{mpm} a result of a call to \code{mpm}.}
-  \item{title}{character string with title to be put on the plot.}
+  % \item{title}{character string with title to be put on the plot.}
   \item{scale}{optional character string specifying the type of factor
     scaling of the biplot. This can be either \code{\dQuote{singul}}
     (singular value scaling), \code{\dQuote{eigen}} (eigenvalue scaling),
@@ -72,7 +71,7 @@
                           individual points}
   \item{do.plot}{produce a plot or not}
   \item{...}{further arguments to \code{eqscaleplot} which draws the canvas
-    for the plot; useful for adding titles (\code{main} or \code{sub})} 
+    for the plot; useful for adding a \code{main} or a custom \code{sub}} 
 }
 \details{
   Spectral maps are special types of biplots with the area of the symbols
