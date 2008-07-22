@@ -132,7 +132,7 @@ plot.mpm <- function(
         c(-1, 1),
         yrange + diff(yrange) * c(-0.1, 0.1))
                                         # RV: changed diff(xrange) to diff(yrange):
-    # the eqscplot funtion (ratio=1) takes care of equally scalled axes, so make sure
+    # the eqscplot funtion (ratio=1) takes care of equally scaled axes, so make sure
     # we have the correct range for each axis here.
     
     #
@@ -152,7 +152,8 @@ plot.mpm <- function(
     eqscplot(xrange, yrange, ratio = 1,
         tol=0, type = "n", axes = FALSE, cex.lab = 0.85,
         xlab = paste("PC", dim[1], " ", 100 * round(x$contrib[dim[1]], 2), "%", sep = ""),
-        ylab = paste("PC", dim[2], " ", 100 * round(x$contrib[dim[2]], 2), "%", sep = ""))
+        ylab = paste("PC", dim[2], " ", 100 * round(x$contrib[dim[2]], 2), "%", sep = ""),
+        ...) # for main / sub
     
     #
     # Scales
