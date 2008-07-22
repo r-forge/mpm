@@ -46,8 +46,11 @@
     positioned columns \code{\dQuote{position}}.}
   \item{col.group}{optional vector (character or numeric) indicating the
     different groupings of the columns, e.g. \code{Golub.grp}. Defaults to 1.}
-  \item{colors}{colors to be applied to the unlabeled rows (displayed as
-    dots), labeled rows, and different groups of columns.}
+  \item{colors}{vector specifying the colors for the annotation of the plot;
+    the first two elements concern the rows; the third till the last element
+    concern the columns; the first element will be used to color the unlabeled
+    rows; the second element for the labeled rows and the remaining elements to
+    give different colors to different groups of columns.}
   \item{col.areas}{logical value indicating whether columns should be
     plotted as squares with areas proportional to their marginal mean
     and colors representing the different groups (\code{TRUE}), or with
@@ -63,8 +66,8 @@
     marginal means of the original data.}
   \item{lab.size}{size of identifying labels for row- and column-items
     as \code{cex} parameter of the \code{text} function}
-  \item{col.size}{size in mm of the column symbols}
-  \item{row.size}{size in mm of the row symbols}
+  \item{col.size}{size in mm of the column symbols} % ??
+  \item{row.size}{size in mm of the row symbols} % ??
   \item{do.smoothScatter}{use smoothScatter or not instead of plotting
                           individual points}
   \item{do.plot}{produce a plot or not}
