@@ -6,7 +6,6 @@ plot.mpm <- function(
     show.row = c("all", "position"),
     show.col = c("all", "position"),
     col.group = rep(1, length(x$col.names)),
-    title = "",
     colors = c("orange1", "red", rainbow(length(unique(col.group)), start=2/6, end=4/6)),
     col.areas = TRUE,
     col.symbols = c(1, rep(2, length(unique(col.group)))),
@@ -169,7 +168,7 @@ plot.mpm <- function(
              ylab = ylab,
              sub = sub,
              cex.sub = cex.sub,
-             ...) # for main
+             ...) # for main etc.
    
     #
     # Scales
