@@ -22,16 +22,30 @@
 ### Web service enabled by Rudi Verbeeck <rverbeec@prdbe.jnj.com>
 ### Included smoothScatter functionality from geneplotter package (BioConductor).
 
-mpm <- function(data, # input data; column 1 contains row names
-	logtrans = TRUE,    # logtransform input data or not (`reexpression')
-  logrepl = 1e-9,     # replace input data <= 0 with this value before taking the log
+#' multivariate projection methods
+#' @author Luc Wouters, Rudi Verbeeck, Tobias Verbeke
+#' @param data input data; column 1 contains row names
+#' @param logtransf logtransform input data or not (`reexpression')
+#' @param logrepl replace input data <= 0 with this value before taking the log
+#' @param center
+#' @param normal
+#' @param closure
+#' @param row.weight
+#' @param col.weight
+#' @param CW Column weight vector (default all 1)
+#' @param RW Row weight vector (default all 1)
+#' @param pos.row
+#' @param pos.col
+mpm <- function(data, 
+	logtrans = TRUE,    
+  logrepl = 1e-9,     
 	center = c("double", "row", "column", "global", "none"),
 	normal = c("global", "row", "column", "none"),
 	closure = c("none", "row", "column", "global", "double"),
 	row.weight = c("constant", "mean", "median", "max", "logmean", "RW"),
 	col.weight = c("constant", "mean", "median", "max", "logmean", "CW"),
-	CW = rep(1, ncol(data)-1),  # Column weight vector (default all 1) 
-	RW = rep(1, nrow(data)),    # Row weight vector (default all 1) 
+	CW = rep(1, ncol(data)-1),  
+	RW = rep(1, nrow(data)),     
 	pos.row = rep(FALSE, nrow(data)),            # Positioned rows and columns are not taken into account during calculation,
 	pos.column = rep(FALSE, ncol(data) - 1)){    # but are still plotted at the correct location
   
