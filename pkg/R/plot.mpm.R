@@ -15,8 +15,9 @@ plot.mpm <- function(
     col.size = 10,
     row.size = 10,
     do.smoothScatter = FALSE, # Plot individual points or density maps
-    do.plot = TRUE,
-    ...) # This routine can also be used to calculate the coordinates, without plotting
+    do.plot = TRUE, # This routine can also be used to calculate the 
+                    # coordinates, without plotting
+    ...) 
 {
 
   ### error checking and argument matching  
@@ -39,6 +40,7 @@ plot.mpm <- function(
     warning("Density map plotting requested but plotting not selected. Continuing with plot.\n")
     do.plot <- TRUE # If smoothScatter is set, then also do a plot
   }
+  
   scale <- match.arg(scale)
   show.row <- match.arg(show.row)
   show.col <- match.arg(show.col)
@@ -148,18 +150,19 @@ plot.mpm <- function(
     opar <- par(pty = "m") # preserve configuration
     # Create a window with the maximal plotting region
     # Equal scale plot function from MASS library
-    if (is.null(sub)){ 
+    dotList <- list(...)
+    if (is.null(dotList$sub)){ 
       sub <- paste("Closure = ", x$closure, ", 
          Center = ", x$center, ", Norm. = ", x$normal, ", Scale = ", scale,
          ", RW = ", x$row.weight, ", CW = ", x$col.weight, sep="")
-      if (is.null(cex.sub))
+      if (is.null(dotList$cex.sub))
         cex.sub <- 0.85 
     }
-    if (is.null(cex.sub)) 
+    if (is.null(dotList$cex.sub)) 
       cex.sub <- 1
-    if (is.null(xlab))
+    if (is.null(dotList$xlab))
       xlab <- paste("PC", dim[1], " ", 100 * round(x$contrib[dim[1]], 2), "%", sep = "")
-    if (is.null(ylab))
+    if (is.null(dotList$ylab))
       ylab <- paste("PC", dim[2], " ", 100 * round(x$contrib[dim[2]], 2), "%", sep = "")
     
     eqscplot(xrange, yrange, ratio = 1,
