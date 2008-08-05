@@ -15,6 +15,7 @@
            col.areas = TRUE ,
            col.symbols = c(1, rep(2, length(unique(col.group)))),
            rot = rep(-1, length(dim)), 
+           labels = NULL,
            label.tol = 1, 
            lab.size = 0.725,
            col.size = 10, row.size = 10,
@@ -58,6 +59,8 @@
   \item{col.symbols}{vector of symbols when \code{col.areas=FALSE}
     corresponds to the \code{pch} argument of the function \code{plot}.}
   \item{rot}{rotation of plot. Defaults to \code{c(-1,-1)}.}
+  \item{labels}{character vector to be used for labeling points on the graph;
+    if \code{NULL}, the row names of \code{x} are used instead}
   \item{label.tol}{numerical value specifying either the percentile
     (\code{label.tol<=1})of rows or the number of rows
     (\code{label.tol>1}) most distant from the plot-center (0,0) that

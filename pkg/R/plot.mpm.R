@@ -10,6 +10,7 @@ plot.mpm <- function(
     col.areas = TRUE,
     col.symbols = c(1, rep(2, length(unique(col.group)))),
     rot = rep(-1, length(dim)), # Mirror all axes
+    labels = NULL, # character vector of labels (to allow labels to differ from row.names)
     label.tol = 1,
     lab.size = 0.725,
     col.size = 10,
@@ -202,11 +203,15 @@ plot.mpm <- function(
     ### plot distant rows as circles with areas proportional to x$Rm
     sqs <- 0.5 * sx * pmax(0.02, row.size * sqrt((x$Rm) / (max(x$Rm))))
     yoffset <- sy * (2 + sqs / sx)
+    
+    
     if (sum(isel) > 0){ # if there is at least 1 point to plot
       symbols(ss[isel, 1], ss[isel, 2], circle = sqs[isel], 
         inches = FALSE, lwd = 3, add = TRUE, fg = colors[2])
+      if (is.null(labels)) labels <- x$row.names
       text(ss[isel, 1], ss[isel, 2] - yoffset[isel], adj = c(0.5, 1), 
-        cex = lab.size, labels = x$row.names[isel], col = colors[2])
+        cex = lab.size, labels = labels[isel], # x$row.names[isel]
+        col = colors[2])
     }
     
     ### plot columns with indication of column-grouping
