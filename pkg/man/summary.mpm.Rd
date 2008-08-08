@@ -1,4 +1,4 @@
-\name{summary.spm}
+\name{summary.mpm}
 \alias{summary.mpm}
 \alias{print.summary.mpm}
 \title{Summary Statistics for Spectral Map Analysis}
