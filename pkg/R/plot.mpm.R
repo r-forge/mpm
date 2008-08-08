@@ -153,7 +153,7 @@ plot.mpm <- function(
     # Equal scale plot function from MASS library
     dotList <- list(...)
     if (is.null(dotList$sub)){ 
-      sub <- paste("Closure = ", x$closure, ",Center = ", x$center, ", Norm. = ", 
+      sub <- paste("Closure = ", x$closure, ", Center = ", x$center, ", Norm. = ", 
           x$normal, ", Scale = ", scale, ", RW = ", x$row.weight, ", CW = ", x$col.weight, sep="")
       if (is.null(dotList$cex.sub))
         cex.sub <- 0.85 
