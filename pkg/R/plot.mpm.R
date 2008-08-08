@@ -157,10 +157,9 @@ plot.mpm <- function(
          Center = ", x$center, ", Norm. = ", x$normal, ", Scale = ", scale,
          ", RW = ", x$row.weight, ", CW = ", x$col.weight, sep="")
       if (is.null(dotList$cex.sub))
-        cex.sub <- 0.85 
+        cex.sub <- 0.55 
     }
-    if (is.null(dotList$cex.sub)) 
-      cex.sub <- 1
+    cex.sub <- if (is.null(dotList$cex.sub)) 0.55 else dotList$cex.sub 
     if (is.null(dotList$xlab))
       xlab <- paste("PC", dim[1], " ", 100 * round(x$contrib[dim[1]], 2), "%", sep = "")
     if (is.null(dotList$ylab))
