@@ -89,7 +89,7 @@ dump.summary.mpm <- function(
   if (filename != "") {
 # SO, 20071129 : changed extension to "_xyz" : compatibility with MAP
 # write.table(r, file=paste(filename, "_spm.txt", sep=""), sep="\t", row.names=F, col.names=T)
-    write.table(r, file=paste(filename, "_xyz.txt", sep=""), sep="\t", row.names=F, col.names=T)
+    write.table(r, file=paste(filename, "_xyz.txt", sep=""), sep="\t", row.names=FALSE, col.names=TRUE)
 # this is how we wrote to file before we explicitely added the row names:
 # write.table(r, file=paste(filename, "_spm.txt", sep=""), sep="\t", col.names=NA)
   }
