@@ -1,13 +1,13 @@
 dump.summary.mpm <- function(
     x, # summary.mpm object
     filename = "")
-# Output the spm summary to a tab-demimited file for processing by other programs (Excel, Spotfire...)
+# Output the mpm summary to a tab-demimited file for processing by other programs (Excel, Spotfire...)
 # If the filename is empty, return the data instead of writing to file (useful for web services).
 # In this case call the function as (X=dataset to analyse, N=number of required dimensions):
-#     spmResult <- dump.summary.spm(summary.spm(spm(X, row.weight="mean",col.weight="mean"), maxdim=N))
+#     mpmResult <- dump.summary.mpm(summary.mpm(mpm(X, row.weight="mean",col.weight="mean"), maxdim=N))
 {
-  if (!inherits(x, "summary.spm"))
-    stop("Use only with 'summary.spm' objects.")
+  if (!inherits(x, "summary.mpm"))
+    stop("Use only with 'summary.mpm' objects.")
   
 # position of factor columns. They are labelled as Prf1,Prf2,Prf3 ... or Pcf1, Pcf2, Pcf3 ... for columns
   FdimsR <- grep("Prf*", names(x$Rows))
@@ -23,7 +23,7 @@ dump.summary.mpm <- function(
   names(x$Columns)[grep("ColWeight", names(x$Columns))] <- "Weight"
   
 #
-# Add polar/spherical coordinates if summary.spm structure contains 2 or 3 dimensions
+# Add polar/spherical coordinates if summary.mpm structure contains 2 or 3 dimensions
 #
   if (length(FdimsR) == 2)
   {
