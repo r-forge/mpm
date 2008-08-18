@@ -60,13 +60,13 @@ summary.mpm <- function(object, maxdim = 4, ...){
   
   # Collect row and column results
   Rows <- as.data.frame(cbind(object$pos.row, Wn, Prf, SQr, SYr, CPr, APr))
-  dimnames(Rows) <- list(object$row.names, c("Posit", "Weight", paste("PRF", 1:maxdim, sep = ""),
+  dimnames(Rows) <- list(object$row.names, c("Posit", "Weight", paste("Prf", 1:maxdim, sep = ""),
                   "Resid", "Norm", "Contrib", "Accuracy"))
   
   Cols <- as.data.frame(cbind(object$pos.column, Wp, Pcf, SQc, SYc, CPc, APc))
   dimnames(VPf) <- list(c("Individual", "Cumulative"),
       c(paste("PRF", 1:maxdim, sep = ""), "Residual", "Total"))
-  names(Cols) <- c("Posit", "Weight", paste("PRF", 1:maxdim, sep = ""),
+  names(Cols) <- c("Posit", "Weight", paste("Pcf", 1:maxdim, sep = ""),
                    "Resid", "Norm", "Contrib", "Accuracy")
   r <- list(call = object$call, Vxy = Vxy, VPF = VPf, 
             Rows = Rows, Columns = Cols)
