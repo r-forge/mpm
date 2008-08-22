@@ -1,0 +1,11 @@
+1.0-11
+    o added dump.summary.mpm function to package
+    o fix sub title 
+1.0-10
+	o introduction of labels argument for plot.mpm in order to allow
+	  labels to be different from the row names
+1.0-9
+	o clarification plot.mpm documentation
+	o removed (less flexible) `title' argument in favor of classical 
+	  main / sub titles	which can be passed to eqscplot via `...' 
+	  instead
