@@ -21,5 +21,5 @@ plot(r.sma, label.tol = 20, scale = "uvc",
     main = "test main")
 
 # change default of sub argument 
-#plot(r.sma, label.tol = 20, scale = "uvc",
-#    col.group = (Golub.grp)[1:38], zoom = c(1,1.2), col.size = 5, sub = "")
+plot(r.sma, label.tol = 20, scale = "uvc",
+    col.group = (Golub.grp)[1:38], zoom = c(1,1.2), col.size = 5, sub = "")

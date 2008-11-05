@@ -153,27 +153,36 @@ plot.mpm <- function(
     # Equal scale plot function from MASS library
     dotList <- list(...)
     if (is.null(dotList$sub)){ 
-      sub <- paste("Closure = ", x$closure, ", Center = ", x$center, ", Norm. = ", 
+      dotList$sub <- paste("Closure = ", x$closure, ", Center = ", x$center, ", Norm. = ", 
           x$normal, ", Scale = ", scale, ", RW = ", x$row.weight, ", CW = ", x$col.weight, sep="")
       if (is.null(dotList$cex.sub))
-        cex.sub <- 0.85 
-    } else {
-      sub <- dotList$sub
-    }
-    cex.sub <- if (is.null(dotList$cex.sub)) 0.85 else dotList$cex.sub 
+        dotList$cex.sub <- 0.85 
+    } 
+    dotList$cex.sub <- if (is.null(dotList$cex.sub)) 0.85 else dotList$cex.sub 
     if (is.null(dotList$xlab))
-      xlab <- paste("PC", dim[1], " ", 100 * round(x$contrib[dim[1]], 2), "%", sep = "")
+      dotList$xlab <- paste("PC", dim[1], " ", 100 * round(x$contrib[dim[1]], 2), "%", sep = "")
     if (is.null(dotList$ylab))
-      ylab <- paste("PC", dim[2], " ", 100 * round(x$contrib[dim[2]], 2), "%", sep = "")
+      dotList$ylab <- paste("PC", dim[2], " ", 100 * round(x$contrib[dim[2]], 2), "%", sep = "")
     
-    eqscplot(xrange, yrange, ratio = 1,
-             tol=0, type = "n", axes = FALSE, cex.lab = 0.85,
-             xlab = xlab,
-             ylab = ylab,
-             sub = sub,
-             cex.sub = cex.sub,
-             ...) # for main etc.
-   
+    dotList$x <- xrange
+    dotList$y <- yrange
+    dotList$ratio <- 1
+    dotList$tol <- 0
+    dotList$type <- "n"
+    dotList$axes <- FALSE
+    dotList$cex.lab = 0.85
+    
+    do.call("eqscplot", dotList)
+    
+#    eqscplot(xrange, yrange, ratio = 1,
+#             tol=0, type = "n", axes = FALSE, cex.lab = 0.85,
+#             xlab = xlab,
+#             ylab = ylab,
+#             sub = mysub,
+#             cex.sub = cex.sub,
+#             ...) # for main etc.
+#   
+         
     #
     # Scales
     # (RV: the drop parameter doesn't have an effect in the following lines)
