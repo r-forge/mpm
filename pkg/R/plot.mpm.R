@@ -157,6 +157,8 @@ plot.mpm <- function(
           x$normal, ", Scale = ", scale, ", RW = ", x$row.weight, ", CW = ", x$col.weight, sep="")
       if (is.null(dotList$cex.sub))
         cex.sub <- 0.85 
+    } else {
+      sub <- dotList$sub
     }
     cex.sub <- if (is.null(dotList$cex.sub)) 0.85 else dotList$cex.sub 
     if (is.null(dotList$xlab))
@@ -248,7 +250,7 @@ plot.mpm <- function(
   #
   # Return value: list of coordinates and indication of most distant (most specific) points
   #
-  cols = as.data.frame(cbind(ss, isel))
+  cols <- as.data.frame(cbind(ss, isel))
   
   if (length(dim) == 1){
     dimnames(cols) <- list(x$row.names, c("X", "Select"))

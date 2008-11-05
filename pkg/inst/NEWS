@@ -1,5 +1,8 @@
 1.0-12
     o return invisibly for plot.mpm
+    o introduce tests directory and script
+    o introduce NAMESPACE
+    o display package version on loading package
 1.0-11
     o added dump.summary.mpm function to package
     o fix sub title 

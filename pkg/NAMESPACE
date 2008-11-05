@@ -1,0 +1,7 @@
+importFrom(MASS, eqscplot)
+export(dump.summary.mpm)
+export(mpm)
+S3method(print, mpm)
+S3method(plot, mpm)
+S3method(summary, mpm)
+S3method(print, summary.mpm)

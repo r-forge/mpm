@@ -1,5 +1,10 @@
-# Software Testing for mpm package
-###################################
+####################################
+# Software Testing for mpm package #
+####################################
+
+# TODO add graphicsqc-based tests
+
+library(mpm)
 
 # Weighted spectral map analysis
 data(Golub) # Gene expression data of leukemia patients
@@ -10,6 +15,11 @@ r.sma <- mpm(Golub[,1:39], row.weight = "mean", col.weight = "mean")
 plot(r.sma, label.tol = 20, scale = "uvc",
     col.group = (Golub.grp)[1:38], zoom = c(1,1.2), col.size = 5)
 
-# change default of sub argument 
+# change default of main argument
 plot(r.sma, label.tol = 20, scale = "uvc",
-    col.group = (Golub.grp)[1:38], zoom = c(1,1.2), col.size = 5, sub = "")
+    col.group = (Golub.grp)[1:38], zoom = c(1,1.2), col.size = 5, 
+    main = "test main")
+
+# change default of sub argument 
+#plot(r.sma, label.tol = 20, scale = "uvc",
+#    col.group = (Golub.grp)[1:38], zoom = c(1,1.2), col.size = 5, sub = "")
