@@ -265,5 +265,5 @@ plot.mpm <- function(
   }
   r <- list(Rows = cols, Columns = as.data.frame(ll))
   class(r) <- "plot.mpm"
-  return(r)
+  invisible(r)
 }

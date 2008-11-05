@@ -86,9 +86,10 @@
     \item{\code{64}}{gene expression data for sample 64}
     \item{\code{62}}{gene expression data for sample 62}
   }
-  The classes are in a separate numeric vector with values
-  \code{1} for the 38 patient samples and \code{2} and \code{3}
-  for the 34 (9 + 25) validation samples.
+  
+  The classes are in a separate numeric vector \code{Golub.grp} with values
+  \code{1} for the 38 ALL B-Cell samples, \code{2} for the 9 ALL T-Cell samples
+  and \code{3} for the 25 AML samples.
 }
 \details{
   The original data of Golub et al. (1999) were preprocessed 
@@ -100,6 +101,8 @@
   The resulting data frame contains 5327 genes of the 6817 
   originally reported by Golub et al. (1999).
 }
+\note{Luc Wouters et al. (2003), p. 1134 contains a typo 
+  concerning the sample sizes of AML- and ALL-type  and erroneously reported }
 \source{
   Golub, T. R., Slonim, D. K., Tamayo, P., et al. (1999). Molecular
   classification of cancer: Class discovery and class prediction by 
