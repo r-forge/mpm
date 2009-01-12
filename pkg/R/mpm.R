@@ -206,7 +206,7 @@ mpm <- function(data,
   ### return
   r <- list(TData = SData,
           	row.names = Row.Names,
-          	col.names = names(data)[-1],
+          	col.names = names(data)[-1], # drop name of column one (row names)
           	closure = closure,
           	center = center,
           	normal = normal,
