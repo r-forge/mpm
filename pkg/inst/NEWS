@@ -1,3 +1,5 @@
+1.0-13
+	o modification of default colors for smoothScatter
 1.0-12
     o return invisibly for plot.mpm
     o introduce tests directory and script

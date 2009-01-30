@@ -199,7 +199,7 @@ plot.mpm <- function(
       points(ss[i,1], ss[i,2], col = colors[1], cex = 0.825, lwd = 2)
     else # plot as density maps
       smoothScatter(ss[i,1], ss[i,2], nbin = 256, nrpoints = 0,
-          add = TRUE) # add image to current eqscplot axes, instead of overwritting
+          add = TRUE, colramp = colorRampPalette(c("white", "burlywood"))) # add image to current eqscplot axes, instead of overwritting
     # Alternative to adding to the axes set up by eqscplot, use the following
     # parameters to set up smoothScatter's own axes.
     # xlim = xrange, ylim = yrange, # make sure we can add distant points later
