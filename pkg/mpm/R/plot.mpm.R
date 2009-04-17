@@ -9,6 +9,7 @@ plot.mpm <- function(
     colors = c("orange1", "red", rainbow(length(unique(col.group)), start=2/6, end=4/6)),
     col.areas = TRUE,
     col.symbols = c(1, rep(2, length(unique(col.group)))),
+    sampleNames = TRUE,
     rot = rep(-1, length(dim)), # Mirror all axes
     labels = NULL, # character vector of labels (to allow labels to differ from row.names)
     label.tol = 1,
@@ -234,8 +235,10 @@ plot.mpm <- function(
         yoffset <- sy * (5 + sqs / (2 * sx))
         symbols(ll[ii, 1], ll[ii, 2],
             square = sqs, inches = FALSE, lwd = 3, add = TRUE, fg = colors[2+iGroup[i]])
-        text(ll[ii,1], ll[ii,2] + yoffset,
-            adj=c(0.5, 1), cex=lab.size, labels=x$col.names[ii], col=colors[2+iGroup[i]])
+        if (sampleNames){
+          text(ll[ii,1], ll[ii,2] + yoffset,
+              adj=c(0.5, 1), cex=lab.size, labels=x$col.names[ii], col=colors[2+iGroup[i]])
+        }
       }
       else # Use different symbols, ignore size
       {

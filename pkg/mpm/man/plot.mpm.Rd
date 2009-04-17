@@ -14,6 +14,7 @@
              rainbow(length(unique(col.group)), start = 2/6, end = 4/6)),
            col.areas = TRUE ,
            col.symbols = c(1, rep(2, length(unique(col.group)))),
+           sampleNames = TRUE,
            rot = rep(-1, length(dim)), 
            labels = NULL,
            label.tol = 1, 
@@ -58,6 +59,7 @@
     (\code{FALSE}). Defaults to \code{TRUE}.}
   \item{col.symbols}{vector of symbols when \code{col.areas=FALSE}
     corresponds to the \code{pch} argument of the function \code{plot}.}
+  \item{sampleNames}{Add sample names on plot (\code{TRUE}; default) or not (\code{FALSE})}
   \item{rot}{rotation of plot. Defaults to \code{c(-1,-1)}.}
   \item{labels}{character vector to be used for labeling points on the graph;
     if \code{NULL}, the row names of \code{x} are used instead}
