@@ -1,3 +1,9 @@
+1.0-15
+    o extend the sampleNames argument to allow to specify the labels to be used on
+      the plot as a character vector (alternatively to the use of a logical of length
+      one as introduced in 1.0-14)
+1.0-14
+    o introduce sampleNames argument to display sample names (TRUE) or not (FALSE)
 1.0-13
     o modification of default colors for smoothScatter
 1.0-12

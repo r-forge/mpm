@@ -59,7 +59,11 @@
     (\code{FALSE}). Defaults to \code{TRUE}.}
   \item{col.symbols}{vector of symbols when \code{col.areas=FALSE}
     corresponds to the \code{pch} argument of the function \code{plot}.}
-  \item{sampleNames}{Add sample names on plot (\code{TRUE}; default) or not (\code{FALSE})}
+  \item{sampleNames}{Either a logical vector of length one or a character vector
+    of length equal to the number of samples in the dataset. If a logical is provided, 
+    sample names will be displayed on the plot (\code{TRUE}; default) or not (\code{FALSE});
+    if a character vector is provided, the names provided will be used to label the samples
+    instead of the default column names.}
   \item{rot}{rotation of plot. Defaults to \code{c(-1,-1)}.}
   \item{labels}{character vector to be used for labeling points on the graph;
     if \code{NULL}, the row names of \code{x} are used instead}

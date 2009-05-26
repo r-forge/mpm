@@ -43,12 +43,29 @@ plot.mpm <- function(
     do.plot <- TRUE # If smoothScatter is set, then also do a plot
   }
   
+  
+  # labeling of samples on the plot
+  if (is.logical(sampleNames)){
+    if (length(sampleNames) > 1){
+      stop("'sampleNames' should either be a logical of length one or a character of length equal to the number of observations")
+    } else {
+      sampleLabels <- if (sampleNames) x$col.names else rep("", length(x$col.names))  
+    }
+  } else {
+    if (length(sampleNames) != length(x$col.names)){
+      stop("If 'sampleNames' is a character vector, the length should be equal to the number of observations")
+    } else {
+      sampleLabels <- sampleNames
+    }
+  }
+  
+  
   scale <- match.arg(scale)
   show.row <- match.arg(show.row)
   show.col <- match.arg(show.col)
-  if(is.data.frame(col.group))
+  if (is.data.frame(col.group))
     col.group <- unlist(col.group)
-  if(length(col.group) != length(x$col.names))
+  if (length(col.group) != length(x$col.names))
     stop("Length of 'col.group' not equal to number of columns in data.")
   col.group <- as.numeric(as.factor(col.group))
 
@@ -235,10 +252,10 @@ plot.mpm <- function(
         yoffset <- sy * (5 + sqs / (2 * sx))
         symbols(ll[ii, 1], ll[ii, 2],
             square = sqs, inches = FALSE, lwd = 3, add = TRUE, fg = colors[2+iGroup[i]])
-        if (sampleNames){
+        # if (sampleNames){
           text(ll[ii,1], ll[ii,2] + yoffset,
-              adj=c(0.5, 1), cex=lab.size, labels=x$col.names[ii], col=colors[2+iGroup[i]])
-        }
+              adj=c(0.5, 1), cex=lab.size, labels=sampleLabels[ii], col=colors[2+iGroup[i]]) # x$col.names[ii]
+        # }
       }
       else # Use different symbols, ignore size
       {
@@ -247,7 +264,7 @@ plot.mpm <- function(
             pch = col.symbols[iGroup[i]], col = colors[2+iGroup[i]],
             cex = col.size / (25.4 * par("csi")), lwd = 3)
         text(ll[ii, 1], ll[ii, 2] + yoffset,
-            adj = c(0.5, 1), cex = lab.size, labels = x$col.names[ii], col = colors[2+iGroup[i]])
+            adj = c(0.5, 1), cex = lab.size, labels = sampleLabels[ii], col = colors[2+iGroup[i]]) # x$col.names[ii]
       }
     }
     
