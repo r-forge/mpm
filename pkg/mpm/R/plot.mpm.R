@@ -19,6 +19,7 @@ plot.mpm <- function(
     do.smoothScatter = FALSE, # Plot individual points or density maps
     do.plot = TRUE, # This routine can also be used to calculate the 
                     # coordinates, without plotting
+    # legend = FALSE,
     ...) 
 {
 
@@ -29,10 +30,6 @@ plot.mpm <- function(
     stop("Use only with 'mpm' objects.")
   if (!require("MASS"))
     stop("MASS package could not be loaded.") 
-  if (do.smoothScatter && !require("geneplotter")){
-    warning("geneplotter package could not be loaded, continuing with normal plot.\n")
-    do.smoothScatter <- FALSE
-  }
   if (do.smoothScatter && label.tol == 1){
     # if we require all points in the plot to be labelled, no points are left for the density map
     warning("All points selected for labelling, continuing without density map.\n")
@@ -42,7 +39,6 @@ plot.mpm <- function(
     warning("Density map plotting requested but plotting not selected. Continuing with plot.\n")
     do.plot <- TRUE # If smoothScatter is set, then also do a plot
   }
-  
   
   # labeling of samples on the plot
   if (is.logical(sampleNames)){
@@ -216,7 +212,7 @@ plot.mpm <- function(
     if (!do.smoothScatter) # plot inner points as unlabelled dots
       points(ss[i,1], ss[i,2], col = colors[1], cex = 0.825, lwd = 2)
     else # plot as density maps
-      smoothScatter(ss[i,1], ss[i,2], nbin = 256, nrpoints = 0,
+      smoothScatter(x = ss[i,1], y = ss[i,2], nbin = 256, nrpoints = 0,
           add = TRUE, colramp = colorRampPalette(c("white", "burlywood"))) # add image to current eqscplot axes, instead of overwritting
     # Alternative to adding to the axes set up by eqscplot, use the following
     # parameters to set up smoothScatter's own axes.
@@ -272,6 +268,14 @@ plot.mpm <- function(
     lines(c(-2.5,2.5) * sx, c(0,0), lwd=3)
     lines(c(0,0), c(-2.5,2.5) * sy, lwd=3)
     box()
+    
+    # legend
+#    legendArg <- match.arg(legend)
+#    if (legendArg != "none"){
+#      legend(legendArg, 
+#        legend = levels(pData(ALL)$BT),
+#        text.col = col.group, bty='n')
+#    }
    
     par(opar) # Restore plotting configuration
   }

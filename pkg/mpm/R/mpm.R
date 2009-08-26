@@ -20,7 +20,8 @@
 ### MA 02111-1307, USA
 
 ### Web service enabled by Rudi Verbeeck <rverbeec@prdbe.jnj.com>
-### Included smoothScatter functionality from geneplotter package (BioConductor).
+### RV included smoothScatter functionality from geneplotter package (BioConductor),
+### now based on smoothScatter from graphics package (TV)
 
 #' multivariate projection methods
 #' @author Luc Wouters, Rudi Verbeeck, Tobias Verbeke
