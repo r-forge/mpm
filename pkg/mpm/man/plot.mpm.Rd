@@ -28,23 +28,23 @@
   \item{x}{object of class \code{mpm} a result of a call to \code{mpm}.}
   % \item{title}{character string with title to be put on the plot.}
   \item{scale}{optional character string specifying the type of factor
-    scaling of the biplot. This can be either \code{\dQuote{singul}}
-    (singular value scaling), \code{\dQuote{eigen}} (eigenvalue scaling),
-    \code{\dQuote{uvr}} (unit row-variance scaling), \code{\dQuote{uvc}}
+    scaling of the biplot. This can be either \kbd{"singul"}
+    (singular value scaling), \kbd{"eigen"} (eigenvalue scaling),
+    \kbd{"uvr"} (unit row-variance scaling), \kbd{"uvc"}
     (unit column-variance scaling). The latter is of particular value
     when analyzing large matrices, such as gene expression
-    data. Singular value scaling \code{\dQuote{singul}} is customary in
-    spectral map analysis. Defaults to \code{\dQuote{singul}}.}
+    data. Singular value scaling \kbd{"singul"} is customary in
+    spectral map analysis. Defaults to \kbd{"singul"}.}
   \item{dim}{optional principal factors that are plotted along the
     horizontal and vertical axis. Defaults to \code{c(1,2)}.}
   \item{zoom}{optional zoom factor for row and column items. Defaults to
     \code{c(1,1)}.}
   \item{show.row}{optional character string indicating whether all rows
-    (\code{\dQuote{all}}) are to be plotted or just the positioned rows
-    \code{\dQuote{position}}.}
+    (\kbd{"all"}) are to be plotted or just the positioned rows
+    \kbd{"position"}.}
   \item{show.col}{optional character string indicating whether all
-    columns (\code{\dQuote{all}}) are to be plotted or just the
-    positioned columns \code{\dQuote{position}}.}
+    columns (\kbd{"all"}) are to be plotted or just the
+    positioned columns \kbd{"position"}.}
   \item{col.group}{optional vector (character or numeric) indicating the
     different groupings of the columns, e.g. \code{Golub.grp}. Defaults to 1.}
   \item{colors}{vector specifying the colors for the annotation of the plot;

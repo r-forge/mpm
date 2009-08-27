@@ -16,9 +16,9 @@
   \item{x}{object of class \code{summary.mpm}}
   \item{digits}{accuracy of printing}
   \item{what}{optional character string specifying whether
-    \code{\dQuote{columns}}, \code{\dQuote{rows}}, or both
-    (\code{\dQuote{all}}) are to appear in the printed report. Defaults
-    to \code{\dQuote{columns}}.}
+    \kbd{"columns"}, \kbd{"rows"}, or both
+    (\kbd{"all"}) are to appear in the printed report. Defaults
+    to \kbd{"columns"}.}
   \item{...}{further arguments to the (default) summary or print
     methods}
 }

@@ -32,40 +32,40 @@ mpm(data, logtrans = TRUE, logrepl = 1e-09,
     numbers in log-transformations. Defaults to \code{1e-9}.}
   \item{closure}{optional character string specifying the closure
     operation that is carried out on the optionally log-transformed data
-    matrix. If \code{\dQuote{double}}.data are divided by row- and
-    column-totals. If \code{\dQuote{row}} data are divided by
-    row-totals. If \code{\dQuote{column}} data are divided by
-    column-totals. If \code{\dQuote{none}} no closure is carried
-    out. Defaults to \code{\dQuote{none}}.}
+    matrix. If \kbd{"double"}.data are divided by row- and
+    column-totals. If \kbd{"row"} data are divided by
+    row-totals. If \kbd{"column"} data are divided by
+    column-totals. If \kbd{"none"} no closure is carried
+    out. Defaults to \kbd{"none"}.}
   \item{center}{optional character string specifying the centering
     operation that is carried out on the optionally log-transformed,
-    closed data matrix. If \code{\dQuote{double}} both row- and
-    column-means are subtracted. If \code{\dQuote{row}} row-means are
-    subtracted. If \code{\dQuote{column}} column-means are subtracted. If
-    \code{\dQuote{none}} the data are left uncentered. Defaults to
-    \code{\dQuote{double}}.}
+    closed data matrix. If \kbd{"double"} both row- and
+    column-means are subtracted. If \kbd{"row"} row-means are
+    subtracted. If \kbd{"column"} column-means are subtracted. If
+    \kbd{"none"} the data are left uncentered. Defaults to
+    \kbd{"double"}.}
   \item{normal}{optional character string specifying the normalization
     operation that is carried out on the optionally log-transformed,
-    closed, and centered data matrix. If \code{\dQuote{global}} the data
+    closed, and centered data matrix. If \kbd{"global"} the data
     are normalized using the global standard deviation. If
-    \code{\dQuote{row}} data are divided by the standard deviations of
-    the respective row. If \code{\dQuote{column}} data are divided by
-    their respective column standard deviation. If \code{\dQuote{none}}
-    no normalization is carried out. Defaults to \code{\dQuote{global}}.}
+    \kbd{"row"} data are divided by the standard deviations of
+    the respective row. If \kbd{"column"} data are divided by
+    their respective column standard deviation. If \kbd{"none"}
+    no normalization is carried out. Defaults to \kbd{"global"}.}
   \item{row.weight}{optional character string specifying the weights of
     the different rows in the analysis. This can be
-    \code{\dQuote{constant}}, \code{\dQuote{mean}}, \code{\dQuote{median}},
-    \code{\dQuote{max}}, \code{\dQuote{logmean}}, or \code{\dQuote{RW}}. If
-    \code{\dQuote{RW}} is specified, weights must be supplied in the
-    vector \code{RW}. In other cases weights are computed from the
-    data. Defaults to \code{\dQuote{constant}}, i.e. constant weighting.}
+    \kbd{"constant"}, \kbd{"mean"}, \kbd{"median"},
+    \kbd{"max"}, \kbd{"logmean"}, or \kbd{"RW"}. If
+    \kbd{"RW"} is specified, weights must be supplied in the
+    vector \kbd{RW}. In other cases weights are computed from the
+    data. Defaults to \kbd{"constant"}, i.e. constant weighting.}
   \item{col.weight}{optional character string specifying the weights of
     the different columns in the analysis. This can be
-    \code{\dQuote{constant}}, \code{\dQuote{mean}}, \code{\dQuote{median}},
-    \code{\dQuote{max}}, \code{\dQuote{logmean}}, or \code{\dQuote{CW}}. If
-    \code{\dQuote{CW}} is specified, weights must be supplied in the
+    \kbd{"constant"}, \kbd{"mean"}, \kbd{"median"},
+    \kbd{"max"}, \kbd{"logmean"}, or \kbd{"CW"}. If
+    \kbd{"CW"} is specified, weights must be supplied in the
     vector \code{CW}. In other cases weights are computed from the
-    data. Defaults to \code{\dQuote{constant}}, i.e. constant weighting.}
+    data. Defaults to \kbd{"constant"}, i.e. constant weighting.}
   \item{CW}{optional numeric vector with external column
     weights. Defaults to 1 (constant weights).}
   \item{RW}{optional numeric vector with external row weights. Defaults
@@ -76,7 +76,7 @@ mpm(data, logtrans = TRUE, logrepl = 1e-09,
   \item{pos.column}{logical vector indicating columns that are not to be
     included in the analysis but must be positioned on the projection
     obtained with the remaining columns. Defaults to \code{FALSE}.}
-  \item{x}{object of class \code{\dQuote{mpm}} to be printed.}
+  \item{x}{object of class \kbd{"mpm"} to be printed.}
   \item{digits}{number of digits to be printed. Defaults to \code{3}.}
   \item{...}{further arguments passed to the (default) print method.}
 }
