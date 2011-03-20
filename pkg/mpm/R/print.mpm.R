@@ -1,3 +1,11 @@
+#' Print Method for mpm Objects
+#' @param x object of class mpm
+#' @param digits minimum number of significant digits to be printed
+#' @param ... further arguments for the print method (for printing the contributions)
+#' @seealso \code{\link{print.default}}
+#' @return x is returned invisibly
+#' @S3method print mpm
+#' @export
 print.mpm <- function(x, digits = 3, ...){
   cat("Call:\n")
   dput(x$call)

@@ -1,42 +1,122 @@
-###
-### Multivariate Projection Methods, mpm
-###
-### Copyright 2003-2008 Luc Wouters <wouters_luc@telenet.be>
-###
-### This file is part of the mpm package for R and related languages.
-### It is made available under the terms of the GNU General Public
-### License, version 2, or at your option, any later version,
-### incorporated herein by reference.
-###
-### This program is distributed in the hope that it will be
-### useful, but WITHOUT ANY WARRANTY; without even the implied
-### warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-### PURPOSE.  See the GNU General Public License for more
-### details.
-###
-### You should have received a copy of the GNU General Public
-### License along with this program; if not, write to the Free
-### Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
-### MA 02111-1307, USA
-
-### Web service enabled by Rudi Verbeeck <rverbeec@prdbe.jnj.com>
-### RV included smoothScatter functionality from geneplotter package (BioConductor),
-### now based on smoothScatter from graphics package (TV)
-
-#' multivariate projection methods
+#' Spectral Map Analysis
+#' Produces an object of class \code{mpm} that allows for exploratory
+#' multivariate analysis of large data matrices, such as gene expression data
+#' from microarray experiments.
+#' 
+#' The function \code{mpm} presents a unified approach to exploratory
+#' multivariate analysis encompassing principal component analysis,
+#' correspondence factor analysis, and spectral map analysis. The algorithm
+#' computes projections of high dimensional data in an orthogonal space. The
+#' resulting object can subsequently be used in the construction of biplots
+#' (i.e. \code{plot.mpm}).
+#' 
+#' The projection of the pre-processed data matrix in the orthogonal space is
+#' calculated using the \code{La.svd} function.
+#' 
+#' @param data a data frame with the row descriptors in the first column. For
+#'   microarray data rows indicate genes and columns biological samples.
+#' @param logtrans an optional logical value. If \code{TRUE}, data are first
+#'   transformed to logarithms (base e) before the other operations.
+#'   Non-positive numbers are replaced by \code{logrepl}. If \code{FALSE}, data
+#'   are left unchanged. Defaults to \code{TRUE}.
+#' @param logrepl an optional numeric value that replaces non-positive numbers
+#'   in log-transformations. Defaults to \code{1e-9}.
+#' @param closure optional character string specifying the closure operation
+#'   that is carried out on the optionally log-transformed data matrix. If
+#'   \kbd{"double"}, data are divided by row- and column-totals. If \kbd{"row"}
+#'   data are divided by row-totals. If \kbd{"column"} data are divided by
+#'   column-totals. If \kbd{"none"} no closure is carried out. Defaults to
+#'   \kbd{"none"}.
+#' @param center optional character string specifying the centering operation
+#'   that is carried out on the optionally log-transformed, closed data matrix.
+#'   If \kbd{"double"} both row- and column-means are subtracted. If
+#'   \kbd{"row"} row-means are subtracted. If \kbd{"column"} column-means are
+#'   subtracted. If \kbd{"none"} the data are left uncentered. Defaults to
+#'   \kbd{"double"}.
+#' @param normal optional character string specifying the normalization
+#'   operation that is carried out on the optionally log-transformed, closed,
+#'   and centered data matrix. If \kbd{"global"} the data are normalized using
+#'   the global standard deviation. If \kbd{"row"} data are divided by the
+#'   standard deviations of the respective row. If \kbd{"column"} data are
+#'   divided by their respective column standard deviation. If \kbd{"none"} no
+#'   normalization is carried out. Defaults to \kbd{"global"}.
+#' @param row.weight optional character string specifying the weights of the
+#'   different rows in the analysis. This can be \kbd{"constant"},
+#'   \kbd{"mean"}, \kbd{"median"}, \kbd{"max"}, \kbd{"logmean"}, or \kbd{"RW"}.
+#'   If \kbd{"RW"} is specified, weights must be supplied in the vector
+#'   \kbd{RW}. In other cases weights are computed from the data. Defaults to
+#'   \kbd{"constant"}, i.e. constant weighting.
+#' @param col.weight optional character string specifying the weights of the
+#'   different columns in the analysis. This can be \kbd{"constant"},
+#'   \kbd{"mean"}, \kbd{"median"}, \kbd{"max"}, \kbd{"logmean"}, or \kbd{"CW"}.
+#'   If \kbd{"CW"} is specified, weights must be supplied in the vector
+#'   \code{CW}. In other cases weights are computed from the data. Defaults to
+#'   \kbd{"constant"}, i.e. constant weighting.
+#' @param CW optional numeric vector with external column weights. Defaults to
+#'   1 (constant weights).
+#' @param RW optional numeric vector with external row weights. Defaults to 1
+#'   (constant weights).
+#' @param pos.row logical vector indicating rows that are not to be included in
+#'   the analysis but must be positioned on the projection obtained with the
+#'   remaining rows. Defaults to \code{FALSE}.
+#' @param pos.column logical vector indicating columns that are not to be
+#'   included in the analysis but must be positioned on the projection obtained
+#'   with the remaining columns. Defaults to \code{FALSE}.
+#' @return An object of class \code{mpm} representing the projection of data
+#'   after the different operations of transformation, closure, centering, and
+#'   normalization in an orthogonal space. Generic functions \code{plot} and
+#'   \code{summary} have methods to show the results of the analysis in more
+#'   detail. The object consists of the following components:
+#'   \item{TData}{matrix with the data after optional log-transformation,
+#'   closure, centering and normalization.} \item{row.names}{character vector
+#'   with names of the row elements as supplied in the first column of the
+#'   original data matrix} \item{col.names}{character vector with the names of
+#'   columns obtained from the column names from the original data matrix}
+#'   \item{closure}{closure operation as specified in the function call}
+#'   \item{center}{centering operation as specified in the function call}
+#'   \item{normal}{normalization operation as specified in the function call}
+#'   \item{row.weight}{type of weighting used for rows as specified in the
+#'   function call} \item{col.weight}{type of weighting used for columns as
+#'   specified in the function call} \item{Wn}{vector with calculated weights
+#'   for rows} \item{Wp}{vector with calculated weights for columns}
+#'   \item{RM}{vector with row means of original data} \item{CM}{vector with
+#'   column means of original data} \item{pos.row}{logical vector indicating
+#'   positioned rows as specified in the function call}
+#'   \item{pos.column}{logical vector indicating positioned columns as
+#'   specified in the function call} \item{SVD}{list with components returned
+#'   by \code{La.svd}} \item{eigen}{eigenvalues for each orthogonal factor from
+#'   obtained from the weighted singular value decomposition}
+#'   \item{contrib}{contributions of each factor to the total variance of the
+#'   pre-processed data, i.e. the eigenvalues as a fraction of the total
+#'   eigenvalue.} \item{call}{the matched call.}
+#' @note Principal component analysis is defined as the projection onto an
+#'   orthogonal space of the column-centered and column-normalized data. In
+#'   correspondence factor analysis the data are pre-processed by double
+#'   closure, double centering, and global normalization. Orthogonal projection
+#'   is carried out using the weighted singular value decomposition. Spectral
+#'   map analysis is in essence a principal component analysis on the
+#'   log-transformed, double centered and global normalized data. Weighted
+#'   spectral map analysis has been proven to be successful in the detection of
+#'   patterns in gene expression data (Wouters et al., 2003).
 #' @author Luc Wouters, Rudi Verbeeck, Tobias Verbeke
-#' @param data input data; column 1 contains row names
-#' @param logtransf logtransform input data or not (`reexpression')
-#' @param logrepl replace input data <= 0 with this value before taking the log
-#' @param center
-#' @param normal
-#' @param closure
-#' @param row.weight
-#' @param col.weight
-#' @param CW Column weight vector (default all 1)
-#' @param RW Row weight vector (default all 1)
-#' @param pos.row
-#' @param pos.col
+#' @seealso \code{\link{plot.mpm}}, \code{\link{summary.mpm}}
+#' @references Wouters, L., Goehlmann, H., Bijnens, L., Kass, S.U.,
+#'   Molenberghs, G., Lewi, P.J. (2003). Graphical exploration of gene
+#'   expression data: a comparative study of three multivariate methods.
+#'   \emph{Biometrics} \bold{59}, 1131-1140.
+#' @keywords multivariate
+#' @examples
+#' 
+#'   data(Golub)
+#'   # Principal component analysis
+#'   r.pca <- mpm(Golub[,1:39], center = "column", normal = "column")
+#'   # Correspondence factor analysis
+#'   r.cfa <- mpm(Golub[,1:39],logtrans = FALSE, row.weight = "mean",
+#'              col.weight = "mean", closure = "double")
+#'   # Weighted spectral map analysis
+#'   r.sma <- mpm(Golub[,1:39], row.weight = "mean", col.weight = "mean")
+#'
+#' @export
 mpm <- function(data, 
 	logtrans = TRUE,    
   logrepl = 1e-9,     
@@ -223,9 +303,6 @@ mpm <- function(data,
           	pos.column = pos.column,
           	pos.row = pos.row,
           	call = match.call())
-          class(r) <- "mpm"
+  class(r) <- "mpm"
   return(r)
 }
-
-#print.plot.spm <- function(x) {invisible(x)}
-
