@@ -4,7 +4,7 @@ Date: 2011-03-20
 Title: Multivariate Projection Methods
 Author: Luc Wouters <wouters_luc@telenet.be>
 Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
-Depends: R (>= 1.5), MASS, KernSmooth
+Depends: R (>= 2.10), MASS, KernSmooth
 Description: Exploratory graphical analysis of multivariate data,
     specifically gene expression data with different projection
     methods: principal component analysis, correspondence analysis,
