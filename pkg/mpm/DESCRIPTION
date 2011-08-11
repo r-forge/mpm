@@ -11,6 +11,6 @@ Description: Exploratory graphical analysis of multivariate data,
     spectral map analysis.
 License: GPL (>=2)
 URL: http://mpm.r-forge.r-project.org
-Collate: 'dump.summary.mpm.R' 'Famin81A.R' 'Golub.R' 'mpm.R'
+Collate: 'export.summary.mpm.R' 'Famin81A.R' 'Golub.R' 'mpm.R'
     'plot.mpm.R' 'print.mpm.R' 'print.summary.mpm.R' 'summary.mpm.R'
     'zzz.R'

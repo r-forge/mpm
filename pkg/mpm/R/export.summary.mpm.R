@@ -18,7 +18,8 @@ export <- function(x, filename, ...){
 #' 
 #' @param x object of class \code{summary.mpm} as produced by the function of
 #'   the same name
-#' @param filename path to the output file
+#' @param filename prefix used to name the output file following <filename>_xyz.txt
+#' @param ... further arguments; currently none are used
 #' @return the output is returned invisibly
 #' @author Rudi Verbeeck, Tobias Verbeke
 #' @seealso \code{\link{summary.mpm}}
@@ -27,7 +28,8 @@ export <- function(x, filename, ...){
 #' @keywords manip
 export.summary.mpm <- function(
     x, # summary.mpm object
-    filename = "")
+    filename = "",
+    ...)
 # Output the mpm summary to a tab-demimited file for processing by other programs (Excel, Spotfire...)
 # If the filename is empty, return the data instead of writing to file (useful for web services).
 # In this case call the function as (X=dataset to analyse, N=number of required dimensions):

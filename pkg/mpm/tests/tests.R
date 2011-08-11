@@ -29,3 +29,5 @@ plot(r.sma, label.tol = 20, scale = "uvc",
     col.group = (Golub.grp)[1:38], zoom = c(1,1.2), col.size = 5, sub = "",
     sampleNames = FALSE, do.smoothScatter = TRUE)
 
+# summary and export
+export(summary(r.sma))
