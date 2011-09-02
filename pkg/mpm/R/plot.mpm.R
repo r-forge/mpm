@@ -320,7 +320,7 @@ plot.mpm <- function(
     
 
     ### plot distant rows as circles with areas proportional to x$Rm
-    sqs <- 0.5 * sx * pmax(0.02, row.size * sqrt((x$Rm) / (max(x$Rm))))
+    sqs <- 0.5 * sx * pmax(0.02, row.size * sqrt(abs((x$Rm)/(max(abs(x$Rm))))))
     yoffset <- sy * (2 + sqs / sx)
     
     
@@ -339,7 +339,7 @@ plot.mpm <- function(
       ii <- il & (col.group == iGroup[i]) # Select columns in group i selected for plotting
       if (col.areas){ # use squares with size (ie. area) proportional to x$Cm
         # RV: Use same scale formula as for rows
-        sqs <- 0.5 * sx * pmax(0.02, col.size * sqrt((x$Cm[ii]) / (max(x$Cm))))
+        sqs <- 0.5 * sx * pmax(0.02, col.size * sqrt(abs((x$Cm[ii])/(max(abs(x$Cm))))))
         yoffset <- sy * (5 + sqs / (2 * sx))
         symbols(ll[ii, 1], ll[ii, 2],
             square = sqs, inches = FALSE, lwd = 3, add = TRUE, fg = colors[2+iGroup[i]])
