@@ -355,7 +355,7 @@ plot.mpm <- function(
           symbols(ll[ii, 1], ll[ii, 2],
               square = sqs, inches = FALSE, lwd = 3, add = TRUE, fg = colors[2+iGroup[i]])
           if (sum(iiExtremes) > 0)
-            text(ll[iiExtremes,1], ll[iiExtremes,2] + yoffset,
+            text(ll[iiExtremes,1], ll[iiExtremes,2] + yoffset[iiExtremes],
                 adj = c(0.5, 1), cex=lab.size, labels=sampleLabels[iiExtremes], col=colors[2+iGroup[i]]) # x$col.names[ii]
           
         } else { # Use different symbols, ignore size
