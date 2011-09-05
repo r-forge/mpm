@@ -7,8 +7,8 @@
     rainbow(length(unique(col.group)), start = 2/6, end = 4/6)),
     col.areas=TRUE, col.symbols=c(1, rep(2,
     length(unique(col.group)))), sampleNames=TRUE, rot=rep(-1,
-    length(dim)), labels, label.tol=1, lab.size=0.725, col.size=10,
-    row.size=10, do.smoothScatter=FALSE, do.plot=TRUE, ...)
+    length(dim)), labels, label.tol=1, label.col.tol=1, lab.size=0.725,
+    col.size=10, row.size=10, do.smoothScatter=FALSE, do.plot=TRUE, ...)
 }
 \description{Spectral Map Plot of Multivariate Data
 Produces a spectral map plot (biplot) of an object of class \code{mpm}}
@@ -80,7 +80,12 @@ the default column names.}
 \item{labels}{character vector to be used for labeling points on the graph;
 if \code{NULL}, the row names of \code{x} are used instead}
 \item{label.tol}{numerical value specifying either the percentile
-(\code{label.tol<=1})of rows or the number of rows (\code{label.tol>1})
+(\code{label.tol<=1}) of rows or the number of rows (\code{label.tol>1})
+most distant from the plot-center (0,0) that are labeled and are plotted
+as circles with area proportional to the marginal means of the original
+data.}
+\item{label.col.tol}{numerical value specifying either the percentile
+(\code{label.col.tol<=1}) of columns or the number of columns (\code{label.col.tol>1})
 most distant from the plot-center (0,0) that are labeled and are plotted
 as circles with area proportional to the marginal means of the original
 data.}

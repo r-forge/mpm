@@ -1,3 +1,6 @@
+1.0-19
+    o fix in plot.mpm to allow depiction of spectral maps with negative numbers
+    o add option to only label a limited number of columns (label.col.tol)
 1.0-18
     o rename dump.summary.mpm to export.summary.mpm and add generic function
 1.0-17

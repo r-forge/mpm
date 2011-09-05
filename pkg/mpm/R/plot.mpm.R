@@ -55,7 +55,12 @@
 #' @param labels character vector to be used for labeling points on the graph;
 #'   if \code{NULL}, the row names of \code{x} are used instead
 #' @param label.tol numerical value specifying either the percentile
-#'   (\code{label.tol<=1})of rows or the number of rows (\code{label.tol>1})
+#'   (\code{label.tol<=1}) of rows or the number of rows (\code{label.tol>1})
+#'   most distant from the plot-center (0,0) that are labeled and are plotted
+#'   as circles with area proportional to the marginal means of the original
+#'   data.
+#' @param label.col.tol numerical value specifying either the percentile
+#'   (\code{label.col.tol<=1}) of columns or the number of columns (\code{label.col.tol>1})
 #'   most distant from the plot-center (0,0) that are labeled and are plotted
 #'   as circles with area proportional to the marginal means of the original
 #'   data.
@@ -109,6 +114,7 @@ plot.mpm <- function(
     rot = rep(-1, length(dim)), # Mirror all axes
     labels = NULL, # character vector of labels (to allow labels to differ from row.names)
     label.tol = 1,
+    label.col.tol = 1, 
     lab.size = 0.725,
     col.size = 10,
     row.size = 10,
@@ -210,12 +216,20 @@ plot.mpm <- function(
   # Calculate which rows are far from the origin (most specific)
   #
   DS <- S[, 1]^2 + S[, 2]^2  # distance from center
-  # Threshold for labels
+  DL <- L[, 1]^2 + L[, 2]^2  # distance from center
+  
+  # Threshold for row labels
   if (label.tol > 1) # label.tol most distant rows are plotted as circles and labelled
     thres <- sort(DS, decreasing = TRUE)[min(length(DS), floor(label.tol))]
   else # label.tol percent most distant rows are plotted as circles and labelled
     thres <- if (label.tol == 0) Inf else quantile(DS, probs = 1-label.tol)
     
+  # Threshold for row labels
+  if (label.col.tol > 1) # label.tol most distant rows are plotted as circles and labelled
+    colThres <- sort(DL, decreasing = TRUE)[min(length(DL), floor(label.col.tol))]
+  else # label.tol percent most distant rows are plotted as circles and labelled
+    colThres <- if (label.col.tol == 0) Inf else quantile(DL, probs = 1-label.col.tol)
+  
   #
   # Positioning
   #
@@ -226,8 +240,8 @@ plot.mpm <- function(
   il <- switch(show.col,
       all = rep(TRUE, nrow(L)),
       position = x$pos.column)
-  isel <- is & (DS >= thres)
   
+  isel <- is & (DS >= thres)
   
   # Only draw a plot if the projection is 2D and the user requested a plot (default)
   if (do.plot && (length(dim) == 2)){
@@ -250,10 +264,10 @@ plot.mpm <- function(
     #
     # Clipping
     # (replace coordinates outside the plotted range by the min or max coordinates)
-    ss[,1] <- pmin(pmax(ss[,1], xrange[1]), xrange[2])
-    ss[,2] <- pmin(pmax(ss[,2], yrange[1]), yrange[2])
-    ll[,1] <- pmin(pmax(ll[,1], xrange[1]), xrange[2])
-    ll[,2] <- pmin(pmax(ll[,2], yrange[1]), yrange[2])
+    ss[, 1] <- pmin(pmax(ss[,1], xrange[1]), xrange[2])
+    ss[, 2] <- pmin(pmax(ss[,2], yrange[1]), yrange[2])
+    ll[, 1] <- pmin(pmax(ll[,1], xrange[1]), xrange[2])
+    ll[, 2] <- pmin(pmax(ll[,2], yrange[1]), yrange[2])
     
     #
     # Set-up plot
@@ -283,17 +297,7 @@ plot.mpm <- function(
     dotList$cex.lab = 0.85
     
     do.call("eqscplot", dotList)
-    
-#    eqscplot(xrange, yrange, ratio = 1,
-#             tol=0, type = "n", axes = FALSE, cex.lab = 0.85,
-#             xlab = xlab,
-#             ylab = ylab,
-#             sub = mysub,
-#             cex.sub = cex.sub,
-#             ...) # for main etc.
-#   
-         
-    #
+
     # Scales
     # (RV: the drop parameter doesn't have an effect in the following lines)
     usr <- par("usr") # Retrieve extremes of coordinates in the plotting region
@@ -333,42 +337,45 @@ plot.mpm <- function(
         col = colors[2])
     }
     
+    
+    
     ### plot columns with indication of column-grouping
     iGroup <- unique(col.group[il]) # unique groups in columns to be plotted
     for (i in 1:length(iGroup)){
       ii <- il & (col.group == iGroup[i]) # Select columns in group i selected for plotting
-      if (col.areas){ # use squares with size (ie. area) proportional to x$Cm
-        # RV: Use same scale formula as for rows
-        sqs <- 0.5 * sx * pmax(0.02, col.size * sqrt(abs((x$Cm[ii])/(max(abs(x$Cm))))))
-        yoffset <- sy * (5 + sqs / (2 * sx))
-        symbols(ll[ii, 1], ll[ii, 2],
-            square = sqs, inches = FALSE, lwd = 3, add = TRUE, fg = colors[2+iGroup[i]])
-        # if (sampleNames){
-          text(ll[ii,1], ll[ii,2] + yoffset,
-              adj=c(0.5, 1), cex=lab.size, labels=sampleLabels[ii], col=colors[2+iGroup[i]]) # x$col.names[ii]
-        # }
-      } else { # Use different symbols, ignore size
-        yoffset <- sy * (5 + col.size / 5)
-        points(ll[ii, 1], ll[ii, 2],
-            pch = col.symbols[iGroup[i]], col = colors[2+iGroup[i]],
-            cex = col.size / (25.4 * par("csi")), lwd = 3)
-        text(ll[ii, 1], ll[ii, 2] + yoffset,
-            adj = c(0.5, 1), cex = lab.size, labels = sampleLabels[ii], col = colors[2+iGroup[i]]) # x$col.names[ii]
+      iiExtremes <- ii & (DL >= colThres) # in order to only label most extreme ones
+      
+      if (sum(ii) > 0){ # at least one point to plot
+        
+        if (col.areas){ # use squares with size (ie. area) proportional to x$Cm
+          # RV: Use same scale formula as for rows
+          sqs <- 0.5 * sx * pmax(0.02, col.size * sqrt(abs((x$Cm[ii])/(max(abs(x$Cm))))))
+          yoffset <- sy * (5 + sqs / (2 * sx))
+          
+          symbols(ll[ii, 1], ll[ii, 2],
+              square = sqs, inches = FALSE, lwd = 3, add = TRUE, fg = colors[2+iGroup[i]])
+          if (sum(iiExtremes) > 0)
+            text(ll[iiExtremes,1], ll[iiExtremes,2] + yoffset,
+                adj = c(0.5, 1), cex=lab.size, labels=sampleLabels[iiExtremes], col=colors[2+iGroup[i]]) # x$col.names[ii]
+          
+        } else { # Use different symbols, ignore size
+          
+          yoffset <- sy * (5 + col.size / 5)
+          points(ll[ii, 1], ll[ii, 2],
+              pch = col.symbols[iGroup[i]], col = colors[2+iGroup[i]],
+              cex = col.size / (25.4 * par("csi")), lwd = 3)
+          if (sum(iiExtremes) > 0)
+            text(ll[iiExtremes, 1], ll[iiExtremes, 2] + yoffset[iiExtremes],
+                adj = c(0.5, 1), cex = lab.size, labels = sampleLabels[iiExtremes], col = colors[2+iGroup[i]]) # x$col.names[ii]
+          
+        }
       }
     }
     
     ### finish plot, put cross on 0,0, box, and legend 
-    lines(c(-2.5,2.5) * sx, c(0,0), lwd=3)
-    lines(c(0,0), c(-2.5,2.5) * sy, lwd=3)
+    lines(c(-2.5, 2.5) * sx, c(0,0), lwd = 3)
+    lines(c(0,0), c(-2.5, 2.5) * sy, lwd = 3)
     box()
-    
-    # legend
-#    legendArg <- match.arg(legend)
-#    if (legendArg != "none"){
-#      legend(legendArg, 
-#        legend = levels(pData(ALL)$BT),
-#        text.col = col.group, bty='n')
-#    }
    
     par(opar) # Restore plotting configuration
   }
