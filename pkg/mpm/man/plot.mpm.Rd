@@ -1,7 +1,7 @@
 \name{plot.mpm}
 \alias{plot.mpm}
 \title{Spectral Map Plot of Multivariate Data...}
-\usage{plot.mpm(x, scale=c("singul", "eigen", "uvr", "uvc"), dim=c(1, 2), zoom=rep(1,
+\usage{\method{plot}{mpm}(x, scale=c("singul", "eigen", "uvr", "uvc"), dim=c(1, 2), zoom=rep(1,
     2), show.row=c("all", "position"), show.col=c("all", "position"),
     col.group=rep(1, length(x$col.names)), colors=c("orange1", "red",
     rainbow(length(unique(col.group)), start = 2/6, end = 4/6)),

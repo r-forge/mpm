@@ -1,7 +1,7 @@
 \name{summary.mpm}
 \alias{summary.mpm}
 \title{Summary Statistics for Spectral Map Analysis...}
-\usage{summary.mpm(object, maxdim=4, ...)
+\usage{\method{summary}{mpm}(object, maxdim=4, ...)
 }
 \description{Summary Statistics for Spectral Map Analysis
 Summary method for object of class \code{mpm}.}

@@ -1,7 +1,7 @@
 \name{print.summary.mpm}
 \alias{print.summary.mpm}
 \title{Print Method for summary...}
-\usage{print.summary.mpm(x, digits=2, what=c("columns", "rows", "all"), ...)
+\usage{\method{print}{summary.mpm}(x, digits=2, what=c("columns", "rows", "all"), ...)
 }
 \description{Print Method for summary.mpm Objects}
 \value{x is returned invisibly}

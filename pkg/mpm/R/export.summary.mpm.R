@@ -23,6 +23,7 @@ export <- function(x, filename, ...){
 #' @return the output is returned invisibly
 #' @author Rudi Verbeeck, Tobias Verbeke
 #' @seealso \code{\link{summary.mpm}}
+#' @method export summary.mpm
 #' @S3method export summary.mpm
 #' @export
 #' @keywords manip

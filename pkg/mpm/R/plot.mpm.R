@@ -87,6 +87,8 @@
 #'   expression data: a comparative study of three multivariate methods.
 #'   \emph{Biometrics} \bold{59}, 1131-1140.
 #' @keywords multivariate hplot
+#' @method plot mpm
+#' @S3method plot mpm
 #' @examples
 #' 
 #'   # Weighted spectral map analysis

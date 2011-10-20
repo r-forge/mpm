@@ -1,7 +1,7 @@
 \name{export.summary.mpm}
 \alias{export.summary.mpm}
 \title{Export the summary output for an mpm object to a text file...}
-\usage{export.summary.mpm(x, filename="", ...)
+\usage{\method{export}{summary.mpm}(x, filename="", ...)
 }
 \description{Export the summary output for an mpm object to a text file
 Output the mpm summary to a tab-demimited file for processing by other

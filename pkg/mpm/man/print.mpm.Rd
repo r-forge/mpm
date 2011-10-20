@@ -1,7 +1,7 @@
 \name{print.mpm}
 \alias{print.mpm}
 \title{Print Method for mpm Objects...}
-\usage{print.mpm(x, digits=3, ...)
+\usage{\method{print}{mpm}(x, digits=3, ...)
 }
 \description{Print Method for mpm Objects}
 \seealso{\code{\link{print.default}}}

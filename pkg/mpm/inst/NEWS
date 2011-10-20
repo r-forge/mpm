@@ -1,3 +1,6 @@
+1.0-20
+    o trivial fix in .onAttach
+    o small documentation improvements
 1.0-19
     o fix in plot.mpm to allow depiction of spectral maps with negative numbers
     o add option to only label a limited number of columns (label.col.tol)
